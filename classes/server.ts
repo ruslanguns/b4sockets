@@ -3,6 +3,7 @@ import express from 'express';
 import { SERVER_PORT } from '../global/enviropment';
 import socketIO from 'socket.io';
 import http from 'http'; // socket.io y http son totalmente compatibles
+import * as socket from '../sockets/sockets';
 
 export default class Server {
 
@@ -37,6 +38,10 @@ export default class Server {
 
         this.io.on('connection', cliente => {
             console.log('Cliente Conectado');
+
+            
+            // Desconectar
+            socket.desconectar( cliente );
             
         });
     }
